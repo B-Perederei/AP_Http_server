@@ -26,21 +26,6 @@ static void wifi_event_handler(void* arg, esp_event_base_t event_base, int32_t e
     if (event_id == WIFI_EVENT_AP_STACONNECTED) {
         wifi_event_ap_staconnected_t* event = (wifi_event_ap_staconnected_t*) event_data;
         ESP_LOGI(TAG, "station "MACSTR" join, AID=%d", MAC2STR(event->mac), event->aid);
-
-        /*
-        // Need to write code for redirection to welcome page here
-        // Redirect connected device to the welcome page
-        httpd_handle_t server = (httpd_handle_t) arg;
-        char redirect_uri[128]; // Use a buffer to hold the URI path
-        snprintf(redirect_uri, sizeof(redirect_uri), "http://192.168.4.1/welcome");
-
-        httpd_req_t *req = httpd_req_from_sockfd(event->socket_fd);
-        if (req) {
-            httpd_resp_set_status(req, "307 Temporary Redirect");
-            httpd_resp_set_hdr(req, "Location", redirect_uri);
-            httpd_resp_send(req, NULL, 0);
-        }*/
-
     } else if (event_id == WIFI_EVENT_AP_STADISCONNECTED) {
         wifi_event_ap_stadisconnected_t* event = (wifi_event_ap_stadisconnected_t*) event_data;
         ESP_LOGI(TAG, "station "MACSTR" join, AID=%d", MAC2STR(event->mac), event->aid);
